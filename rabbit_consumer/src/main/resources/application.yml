@@ -9,3 +9,9 @@ spring:
     listener:
       simple:
         acknowledge-mode: manual
+        retry:
+          enabled: true
+          initial-interval: 3s
+          max-interval: 10s
+          max-attempts: 5
+          multiplier: 2

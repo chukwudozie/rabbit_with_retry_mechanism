@@ -7,7 +7,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class RetryPictureProducer {
 
     @Autowired
@@ -19,6 +19,6 @@ public class RetryPictureProducer {
         // convert Picture to JSON  String using object Mapper
         String pictureString  = objectMapper.writeValueAsString(picture);
         // params - exchange name, routing key, String of message
-        rabbitTemplate.convertAndSend("x.guideline.work",picture.getType(),pictureString);
+        rabbitTemplate.convertAndSend("x.spring.work",picture.getType(),pictureString);
     }
 }

@@ -32,9 +32,10 @@ public class RabbitWithRetryApplication  implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         for(int i = 0 ; i < 1; i++){
+            System.out.println(i);
             Picture picture = new Picture();
             picture.setName("Test Spring--"+i);
-            picture.setSize(ThreadLocalRandom.current().nextLong(9001,10000));
+            picture.setSize(ThreadLocalRandom.current().nextLong(9500,10000));
             picture.setSource(SOURCES.get(i % SOURCES.size()));
             picture.setType(TYPES.get(i % TYPES.size()));
             producer.sendMessage(picture);
