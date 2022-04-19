@@ -4,6 +4,7 @@ import com.emeka.rabbit_with_retry.entity.Employee;
 import com.emeka.rabbit_with_retry.entity.Picture;
 import com.emeka.rabbit_with_retry.producer.RetryEmployeeProducer;
 import com.emeka.rabbit_with_retry.producer.RetryPictureProducer;
+import com.emeka.rabbit_with_retry.producer.SpringEmployeeProducer;
 import com.emeka.rabbit_with_retry.producer.SpringPictureProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -24,25 +25,25 @@ public class RabbitWithRetryApplication  implements CommandLineRunner {
     @Autowired
 //    private RetryPictureProducer producer;
 //    private RetryEmployeeProducer producer;
-    private SpringPictureProducer producer;
-
+//    private SpringPictureProducer producer;
+    private SpringEmployeeProducer producer;
     private final List<String> SOURCES = List.of("mobile", "web");
     private final List<String> TYPES = List.of("jpg","png", "svg");
 
     @Override
     public void run(String... args) throws Exception {
         for(int i = 0 ; i < 1; i++){
-            System.out.println(i);
-            Picture picture = new Picture();
-            picture.setName("Test Spring--"+i);
-            picture.setSize(ThreadLocalRandom.current().nextLong(9500,10000));
-            picture.setSource(SOURCES.get(i % SOURCES.size()));
-            picture.setType(TYPES.get(i % TYPES.size()));
-            producer.sendMessage(picture);
+//            System.out.println(i);
+//            Picture picture = new Picture();
+//            picture.setName("Test Spring--"+i);
+//            picture.setSize(ThreadLocalRandom.current().nextLong(9500,10000));
+//            picture.setSource(SOURCES.get(i % SOURCES.size()));
+//            picture.setType(TYPES.get(i % TYPES.size()));
+//            producer.sendMessage(picture);
 
             // publish ten invalid employees
-//            Employee employee = new Employee("emp-"+i,null, LocalDate.now());
-//            producer.sendMessage(employee);
+            Employee employee = new Employee("emp-"+i,"", LocalDate.of(2022,04,i+1));
+            producer.sendMessage(employee);
         }
 
     }
