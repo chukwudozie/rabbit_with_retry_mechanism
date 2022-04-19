@@ -30,7 +30,7 @@ public class DeadQueueConsumer {
         channel.basicAck(tag, false);
     }
 
-    @RabbitListener(queues = "q.guideline2.marketing.dead")
+    @RabbitListener(queues = "q.guideline2.accounting.dead")
     public void listenForAccounting(Message message, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long tag)
             throws IOException {
         Employee employee = objectMapper.readValue(message.getBody(), Employee.class);
